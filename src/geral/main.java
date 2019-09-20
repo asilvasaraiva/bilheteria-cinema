@@ -1,10 +1,11 @@
 package geral;
 
+import conexao.Conexao;
+
 public class main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		Conexao con = new Conexao();
 	}
 
 }

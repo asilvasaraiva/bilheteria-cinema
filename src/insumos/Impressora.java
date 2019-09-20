@@ -1,10 +1,10 @@
 package insumos;
 
-public class Printer {
+public class Impressora {
 private String nome;
 private int quantidade;
 
-public Printer(String nome, int quantidade) {
+public Impressora(String nome, int quantidade) {
 	super();
 	this.nome = nome;
 	this.quantidade = quantidade;

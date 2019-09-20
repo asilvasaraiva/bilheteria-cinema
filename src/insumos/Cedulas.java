@@ -1,11 +1,11 @@
 package insumos;
 
-public class Money {
+public class Cedulas {
 private String descricao;
 private float valor;
 private int quantidade;
 
-public Money(String descricao, float valor, int quantidade) {
+public Cedulas(String descricao, float valor, int quantidade) {
 	super();
 	this.descricao = descricao;
 	this.valor = valor;
