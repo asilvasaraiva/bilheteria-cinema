@@ -39,5 +39,10 @@ public void setPreco(float preco) {
 	this.preco = preco;
 }
 
-
+public void addLugares(int qtd) {
+	this.lugares+=qtd;
+}
+public void subLugares(int qtd) {
+	this.lugares-=qtd;
+}
 }

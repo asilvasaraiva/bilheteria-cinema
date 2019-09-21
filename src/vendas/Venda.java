@@ -4,38 +4,30 @@ import java.util.ArrayList;
 
 import insumos.Cedulas;
 import insumos.GeraInsumos;
+import operacao.Manutencao;
 
 public class Venda {
 
 	//private GeraInsumos insumos = new GeraInsumos();
 	
-	public int geraTroco(float valorFilme, float dinheiroRecebido, ArrayList<Cedulas> listaCedulas) {
+	public int[] geraTroco(float valorFilme, float dinheiroRecebido, ArrayList<Cedulas> listaCedulas) {
 		
 		if(valorFilme > dinheiroRecebido) {
 			System.out.println("Dinheiro Insuficiente para o filme escolhido");
-			return 0;
-		}else if ((dinheiroRecebido - valorFilme) >calcDinheiroTotal(listaCedulas)) {
+			return null;
+		}else if ((dinheiroRecebido - valorFilme) >Manutencao.calcDinheiroTotal(listaCedulas)) {
 			System.out.println("Dinheiro Na maquina Insuficiente para gerar troco");
-			return 0;
+			return null;
 		}
 		
-		return 0;
+		return calculaTroco(valorFilme, dinheiroRecebido, listaCedulas);
 	}
 	
 	
-	public static float calcDinheiroTotal(ArrayList<Cedulas> listaCedulas) {
-		float resultado = 0;
-		for(int i = 0; i<listaCedulas.size();i++) {
-					resultado+=(listaCedulas.get(i).getQuantidade()*listaCedulas.get(i).getValor());
-		}
-		
-		System.out.println("\nDinheiro Total da maquina: "+resultado);
-		return resultado;
-	}
 	
 	public int[] calculaTroco(float valorFilme, float dinheiroRecebido, ArrayList<Cedulas> listaCedulas) {
 		
-		calcDinheiroTotal(listaCedulas);
+		Manutencao.calcDinheiroTotal(listaCedulas);
 		System.out.println("Dinheiro Recebido:"+dinheiroRecebido);
 		float resto,troco = (dinheiroRecebido - valorFilme);
 		int valorReal5, valorReal2,valorReal1,valorReal50c,valorReal25c, resultado;

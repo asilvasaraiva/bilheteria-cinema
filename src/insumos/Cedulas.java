@@ -31,6 +31,12 @@ public void setQuantidade(int quantidade) {
 	this.quantidade = quantidade;
 }
 
+public void addQuantidade(int qtd) {
+	this.quantidade+=qtd;
+}
 
+public void subQuantidade(int qtd) {
+	this.quantidade-=qtd;
+}
 
 }

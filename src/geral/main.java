@@ -16,7 +16,7 @@ public class main {
 		
 		Venda teste = new Venda();
 		
-		int[] troco =  teste.calculaTroco(0, 23.25f, cedulas);
+		int[] troco =  teste.geraTroco(0, 23.25f, cedulas);
 		if(troco!=null) {
 		System.out.println("\ncedulas de 5,00 R$: "+troco[0]);
 		System.out.println("cedulas de 2,00 R$: "+troco[1]);
