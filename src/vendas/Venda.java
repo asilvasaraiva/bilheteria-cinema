@@ -26,12 +26,17 @@ public class Venda {
 	public static float calcDinheiroTotal(ArrayList<Cedulas> listaCedulas) {
 		float resultado = 0;
 		for(int i = 0; i<listaCedulas.size();i++) {
-					resultado=+(listaCedulas.get(i).getQuantidade()*listaCedulas.get(i).getValor());
-		}		
+					resultado+=(listaCedulas.get(i).getQuantidade()*listaCedulas.get(i).getValor());
+		}
+		
+		System.out.println("\nDinheiro Total da maquina: "+resultado);
 		return resultado;
 	}
 	
 	public int[] calculaTroco(float valorFilme, float dinheiroRecebido, ArrayList<Cedulas> listaCedulas) {
+		
+		calcDinheiroTotal(listaCedulas);
+		System.out.println("Dinheiro Recebido:"+dinheiroRecebido);
 		float resto,troco = (dinheiroRecebido - valorFilme);
 		int valorReal5, valorReal2,valorReal1,valorReal50c,valorReal25c, resultado;
 		int[] cedulas = new int[5];
@@ -40,9 +45,9 @@ public class Venda {
 				break;
 			}else if((troco / listaCedulas.get(i).getValor())>0){
 				cedulas[i] =  (int) (troco / listaCedulas.get(i).getValor());
-				System.out.println("Cedula "+i+" :"+cedulas[i]);
+				//System.out.println("Cedula "+i+" :"+cedulas[i]);
 				resto = troco % listaCedulas.get(i).getValor();
-				System.out.println("resto:"+resto);
+				//System.out.println("resto:"+resto);
 				troco = resto;
 				}
 			}
@@ -56,11 +61,11 @@ public class Venda {
 		//e o resto adiciona a qantidade do proximo valor que é menor.
 		if((valorReal5 - listaCedulas.get(0).getQuantidade())>0) {
 			resultado = valorReal5 - listaCedulas.get(0).getQuantidade();//pega quanto sobra
-			valorReal2 += resultado* 2; // multiplica o que sobra pelo valor do menor seguinte.
-			valorReal1++;
+			valorReal2 += resultado* 2; // multiplica por 4 pois 1 cedula de 5
+			valorReal1 +=resultado;
 			cedulas[0] = listaCedulas.get(0).getQuantidade();// valor total que tinha 
 			cedulas[1] = valorReal2; //prox valor (2reai no caso) tem seu numero aumentado pela quantidade total pra formar 5 (2x2) + 1 de um real
-			cedulas[2]++; //incrementando a quantidade de 1 real necessario para completar o 5 reais
+			cedulas[2] =valorReal1; //incrementando a quantidade de 1 real necessario para completar o 5 reais
 		}
 		if((valorReal2 - listaCedulas.get(1).getQuantidade())>0) {
 			resultado = valorReal2 - listaCedulas.get(0).getQuantidade();
@@ -73,7 +78,7 @@ public class Venda {
 			valorReal50c += resultado* 2;
 			cedulas[2] = listaCedulas.get(2).getQuantidade();
 			cedulas[3] =valorReal50c; 
-		}		
+		}
 		if((valorReal50c - listaCedulas.get(3).getQuantidade())>0) {
 			resultado = valorReal50c - listaCedulas.get(3).getQuantidade();
 			valorReal25c += resultado* 2;
@@ -86,6 +91,8 @@ public class Venda {
 		}else {
 			cedulas[4] = valorReal25c;
 		}
+		
+		
 		
 		return cedulas;
 	}
