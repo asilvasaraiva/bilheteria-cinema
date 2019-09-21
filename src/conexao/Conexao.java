@@ -12,7 +12,7 @@ public class Conexao {
 	 public Conexao(){
 		
 		url = "jdbc:postgresql://localhost:5432/bilheteria";
-		usuario = "user_bilheteria";
+		usuario = "postgres";
 		senha = "123456";
 		
 		try {
