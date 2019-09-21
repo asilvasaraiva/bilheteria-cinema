@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class GeraInsumos {
 private ArrayList<Filmes> listaFilmes;
-private ArrayList<Cedulas> listaCedulas;
+private ArrayList<Cedulas> listaCedulas = new ArrayList<Cedulas>();
 
 
 public ArrayList<Filmes> geraListaFilmes(int qtd){
@@ -17,11 +17,11 @@ public ArrayList<Filmes> geraListaFilmes(int qtd){
 }
 	
 public ArrayList<Cedulas> geraListaCedulas(int qtd){
-		Cedulas cedulaI = new Cedulas("25cents", 0.25f, qtd) ;
-		Cedulas cedulaII = new Cedulas("50cents", 0.50f, qtd) ;
+		Cedulas cedulaV = new Cedulas("25cents", 0.25f, qtd) ;
+		Cedulas cedulaIV = new Cedulas("50cents", 0.50f, qtd) ;
 		Cedulas cedulaIII = new Cedulas("1real", 1.0f, qtd) ;
-		Cedulas cedulaIV = new Cedulas("2reais", 2.0f, qtd) ;
-		Cedulas cedulaV = new Cedulas("5reais", 5.0f, qtd) ;
+		Cedulas cedulaII = new Cedulas("2reais", 2.0f, qtd) ;
+		Cedulas cedulaI = new Cedulas("5reais", 5.0f, qtd) ;
 		
 		this.listaCedulas.add(cedulaI);
 		this.listaCedulas.add(cedulaII);
@@ -35,4 +35,23 @@ public Impressora geraImpressora(int qtd) {
 	Impressora impressora = new Impressora("Impressora", qtd);
 	return impressora;
 }
+
+public ArrayList<Filmes> getListaFilmes() {
+	return listaFilmes;
+}
+
+public void setListaFilmes(ArrayList<Filmes> listaFilmes) {
+	this.listaFilmes = listaFilmes;
+}
+
+public ArrayList<Cedulas> getListaCedulas() {
+	return listaCedulas;
+}
+
+public void setListaCedulas(ArrayList<Cedulas> listaCedulas) {
+	this.listaCedulas = listaCedulas;
+}
+
+
+
 }
