@@ -23,6 +23,15 @@ public class Manutencao {
 		listaFilmes.add(novo);		
 	}
 	
+	
+	public static void subtraiFilme(String nome,ArrayList<Filmes> listaFilmes ) {
+		for(int i = 0; i<listaFilmes.size();i++) {
+			if(listaFilmes.get(i).getNome()==nome) {
+				listaFilmes.remove(i);
+			}
+		}
+	}	
+	
 	public static void adicionaDinheiro(float valor, ArrayList<Cedulas> listaCedulas, int qtd) {
 		for(int i = 0; i<listaCedulas.size();i++) {
 			if(listaCedulas.get(i).getValor()==qtd) {

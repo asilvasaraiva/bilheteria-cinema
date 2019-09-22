@@ -1,5 +1,7 @@
 package insumos;
 
+import java.util.ArrayList;
+
 public class Filmes {
 private String nome;
 private int duracao;
@@ -44,5 +46,11 @@ public void addLugares(int qtd) {
 }
 public void subLugares(int qtd) {
 	this.lugares-=qtd;
+}
+
+public static void exibeFilmes(ArrayList<Filmes> listaFilmes) {
+	for(int i = 0; i<listaFilmes.size();i++) {
+		System.err.println(listaFilmes.get(i).getNome());
+	}
 }
 }

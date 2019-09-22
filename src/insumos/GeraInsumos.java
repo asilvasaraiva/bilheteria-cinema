@@ -4,9 +4,9 @@ package insumos;
 import java.util.ArrayList;
 
 public class GeraInsumos {
-private ArrayList<Filmes> listaFilmes;
+private ArrayList<Filmes> listaFilmes = new ArrayList<Filmes>();
 private ArrayList<Cedulas> listaCedulas = new ArrayList<Cedulas>();
-
+private Impressora impressora;
 
 public ArrayList<Filmes> geraListaFilmes(int qtd){
 		for(int i = 0; i<qtd;i++) {
@@ -32,7 +32,7 @@ public ArrayList<Cedulas> geraListaCedulas(int qtd){
 	}
 
 public Impressora geraImpressora(int qtd) {
-	Impressora impressora = new Impressora("Impressora", qtd);
+	 this.impressora = new Impressora("Impressora", qtd);
 	return impressora;
 }
 
@@ -50,6 +50,14 @@ public ArrayList<Cedulas> getListaCedulas() {
 
 public void setListaCedulas(ArrayList<Cedulas> listaCedulas) {
 	this.listaCedulas = listaCedulas;
+}
+
+public Impressora getImpressora() {
+	return impressora;
+}
+
+public void setImpressora(Impressora impressora) {
+	this.impressora = impressora;
 }
 
 

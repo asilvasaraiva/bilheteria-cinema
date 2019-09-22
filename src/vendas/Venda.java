@@ -1,14 +1,43 @@
 package vendas;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import insumos.Cedulas;
+import insumos.Filmes;
 import insumos.GeraInsumos;
 import operacao.Manutencao;
 
 public class Venda {
 
-	//private GeraInsumos insumos = new GeraInsumos();
+	
+	public static void mod_Venda(GeraInsumos  insumos) {
+		
+		System.out.println("\n");
+		Scanner input = new Scanner(System.in);
+		int opcao  = 1;
+		utilidade.Util.limpaTela();
+		while(opcao>0) {
+			System.err.println("#-------------Sistema de Bilheteria Digital #Modulo Vendas -----------");
+			System.out.println("# Escolha a opcao desejada://");
+			System.out.println("# 1|-> Visualizar lista de filmes//");
+			System.out.println("# 2|-> Operações da maquina//");
+			opcao = input.nextInt();
+			
+			switch(opcao) {
+			  case 1:
+				  Filmes.exibeFilmes(insumos.getListaFilmes());
+			    break;
+			  case 2:
+			    
+			    break;
+			    
+			  default:
+			    // code block
+			}
+		}
+	}
+	
 	
 	public int[] geraTroco(float valorFilme, float dinheiroRecebido, ArrayList<Cedulas> listaCedulas) {
 		
@@ -22,8 +51,6 @@ public class Venda {
 		
 		return calculaTroco(valorFilme, dinheiroRecebido, listaCedulas);
 	}
-	
-	
 	
 	public int[] calculaTroco(float valorFilme, float dinheiroRecebido, ArrayList<Cedulas> listaCedulas) {
 		
