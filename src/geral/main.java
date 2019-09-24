@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import conexao.Conexao;
+import fluxocaixa.Caixa;
 import insumos.Cedulas;
 import insumos.Filmes;
 import insumos.GeraInsumos;
@@ -14,6 +15,7 @@ public class main {
 	public static void main(String[] args) {
 		//Conexao con = new Conexao();
 		GeraInsumos  insumos = new GeraInsumos();
+		Caixa caixa = new Caixa();
 		Scanner input = new Scanner(System.in);
 		int opcao = 1;
 		//String senha = "admin";
@@ -35,16 +37,16 @@ public class main {
 		}*/
 		
 		while(opcao>0) {
-			System.err.println("#-------------Sistema de Bilheteria Digital-----------#");
-			System.out.println("# Escolha o modulo desejado://");
-			System.out.println("# 1|-> Venda de Café//");
-			System.out.println("# 2|-> Operações da maquina//");
+			System.out.println("#-------------Sistema de Bilheteria Digital-----------#");
+			System.out.println("# Escolha o modulo desejado:");
+			System.out.println("# 1|-> Venda de Ingresso");
+			System.out.println("# 2|-> Operações da maquina");
 			opcao = input.nextInt();
 			
 			switch(opcao) {
 			  case 1:
 			    // code block
-				  Venda.mod_Venda(insumos);
+				  Venda.mod_Venda(insumos,caixa);
 			    break;
 			  case 2:
 			    
@@ -52,7 +54,7 @@ public class main {
 			  case 0:
 				  break;
 			  default:
-				  System.out.println("Valor informado inválido, por favor escolha um dos valores disponíveis");
+				  System.out.println("Valor informado inválido, por favor escolha um dos valores disponíveis\n");
 			}
 		}
 		  System.out.println("#####Obrigado por utilizar nosso sistema.######");

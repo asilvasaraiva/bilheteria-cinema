@@ -3,6 +3,9 @@ package vendas;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+
+import fluxocaixa.Caixa;
 import insumos.Cedulas;
 import insumos.Filmes;
 import insumos.GeraInsumos;
@@ -11,17 +14,18 @@ import operacao.Manutencao;
 public class Venda {
 
 	
-	public static void mod_Venda(GeraInsumos  insumos) {
+	public static void mod_Venda(GeraInsumos  insumos, Caixa caixa) {
 		
 		System.out.println("\n");
 		Scanner input = new Scanner(System.in);
 		int opcao  = 1;
 		utilidade.Util.limpaTela();
 		while(opcao>0) {
-			System.err.println("#-------------Sistema de Bilheteria Digital #Modulo Vendas -----------");
+			System.out.println("#\n-------------Sistema de Bilheteria Digital #Modulo Vendas -----------");
 			System.out.println("# Escolha a opcao desejada://");
 			System.out.println("# 1|-> Visualizar lista de filmes//");
-			System.out.println("# 2|-> Operações da maquina//");
+			System.out.println("# 2|-> Escolher Filme");
+			
 			opcao = input.nextInt();
 			
 			switch(opcao) {
@@ -29,9 +33,12 @@ public class Venda {
 				  Filmes.exibeFilmes(insumos.getListaFilmes());
 			    break;
 			  case 2:
-			    
+				  System.out.println("#Qual o numero Filme: ");
+				  opcao = input.nextInt();
+				  vendeFilme(insumos, opcao, caixa);
 			    break;
-			    
+			  case 0:
+				  break;
 			  default:
 			    // code block
 			}
@@ -39,24 +46,35 @@ public class Venda {
 	}
 	
 	
-	public int[] geraTroco(float valorFilme, float dinheiroRecebido, ArrayList<Cedulas> listaCedulas) {
+	public static boolean geraTroco(float valorFilme, float dinheiroRecebido, ArrayList<Cedulas> listaCedulas) {
 		
 		if(valorFilme > dinheiroRecebido) {
 			System.out.println("Dinheiro Insuficiente para o filme escolhido");
-			return null;
+			return false;
 		}else if ((dinheiroRecebido - valorFilme) >Manutencao.calcDinheiroTotal(listaCedulas)) {
 			System.out.println("Dinheiro Na maquina Insuficiente para gerar troco");
-			return null;
+			return false;
 		}
 		
-		return calculaTroco(valorFilme, dinheiroRecebido, listaCedulas);
+		int[] calculaTroco = calculaTroco(valorFilme, dinheiroRecebido, listaCedulas);
+		if(calculaTroco!=null) {
+			System.out.println("Troco disponibilizado em: ");
+			for(int i = 0; i<5;i++) {
+				listaCedulas.get(i).subQuantidade(calculaTroco[i]);//subtrai os valores do troco da base
+				System.out.println(calculaTroco[i]+"notas/moedas de: "+listaCedulas.get(i).getDescricao());
+			}
+			return true;
+			
+		}
+		return false;
 	}
 	
-	public int[] calculaTroco(float valorFilme, float dinheiroRecebido, ArrayList<Cedulas> listaCedulas) {
+	public static int[] calculaTroco(float valorFilme, float dinheiroRecebido, ArrayList<Cedulas> listaCedulas) {
 		
-		Manutencao.calcDinheiroTotal(listaCedulas);
+		//Manutencao.calcDinheiroTotal(listaCedulas);
 		System.out.println("Dinheiro Recebido:"+dinheiroRecebido);
 		float resto,troco = (dinheiroRecebido - valorFilme);
+		System.out.println("Troco: "+troco);
 		int valorReal5, valorReal2,valorReal1,valorReal50c,valorReal25c, resultado;
 		int[] cedulas = new int[5];
 		for(int i = 0; i<listaCedulas.size();i++) {	
@@ -111,9 +129,30 @@ public class Venda {
 			cedulas[4] = valorReal25c;
 		}
 		
-		
-		
 		return cedulas;
 	}
 	
+	
+	
+	public static void vendeFilme(GeraInsumos  insumos, int filmeEscolhido, Caixa caixa) {
+		Filmes filme = insumos.getListaFilmes().get(filmeEscolhido);
+		
+		if(filme.getLugares()<=0) {
+			System.out.println("Numero de lugares esgotados para esse filme, por favor escolha outro");
+		}else if(insumos.getImpressora().getQuantidade()<1) {		 
+			System.out.println("Papel Insuficiente na impressora para imprimir o ticket");
+		}else{
+			Scanner input = new Scanner(System.in);
+			float dinheiro;
+			System.out.println("#Insira o dinheiro: ");
+			dinheiro = input.nextFloat();
+			if(filme.getPreco()> dinheiro) {
+				System.out.println("Dinheiro Insuficiente para reservar o filme");
+			}else if(Venda.geraTroco(filme.getPreco(),dinheiro,insumos.getListaCedulas())) {	
+			System.out.println("Venda realizada com sucesso, obrigado e aproveite o filme.");	
+			caixa.fechaVenda(filme.getPreco());
+		}
+	}
+}
+
 }

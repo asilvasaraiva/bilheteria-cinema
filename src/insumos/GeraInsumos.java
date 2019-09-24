@@ -10,7 +10,7 @@ private Impressora impressora;
 
 public ArrayList<Filmes> geraListaFilmes(int qtd){
 		for(int i = 0; i<qtd;i++) {
-			Filmes filme = new Filmes("ABC "+i, i, i*30, i*2.3f);
+			Filmes filme = new Filmes("ABC "+i, i, i*30, i*2.5f);
 			this.listaFilmes.add(filme);
 		}
 		return this.listaFilmes;
