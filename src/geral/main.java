@@ -8,6 +8,7 @@ import fluxocaixa.Caixa;
 import insumos.Cedulas;
 import insumos.Filmes;
 import insumos.GeraInsumos;
+import operacao.Manutencao;
 import vendas.Venda;
 
 public class main {
@@ -18,7 +19,7 @@ public class main {
 		Caixa caixa = new Caixa();
 		Scanner input = new Scanner(System.in);
 		int opcao = 1;
-		//String senha = "admin";
+		String senha = "";
 		
 		insumos.geraListaFilmes(4);
 		insumos.geraImpressora(30);
@@ -37,10 +38,11 @@ public class main {
 		}*/
 		
 		while(opcao>0) {
-			System.out.println("#-------------Sistema de Bilheteria Digital-----------#");
+			System.out.println("\n#-------------Sistema de Bilheteria Digital-----------#");
 			System.out.println("# Escolha o modulo desejado:");
 			System.out.println("# 1|-> Venda de Ingresso");
 			System.out.println("# 2|-> Operações da maquina");
+			System.out.println("# 0|-> Encerrar sistema");
 			opcao = input.nextInt();
 			
 			switch(opcao) {
@@ -49,7 +51,9 @@ public class main {
 				  Venda.mod_Venda(insumos,caixa);
 			    break;
 			  case 2:
-			    
+				  System.out.println("#Digite a senha: ");
+				  senha = input.next();
+				 Manutencao.mod_Manutencao(insumos,caixa,senha);
 			    break;
 			  case 0:
 				  break;

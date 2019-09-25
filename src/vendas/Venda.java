@@ -10,6 +10,7 @@ import insumos.Cedulas;
 import insumos.Filmes;
 import insumos.GeraInsumos;
 import operacao.Manutencao;
+import relatorio.Relatorios;
 
 public class Venda {
 
@@ -19,12 +20,12 @@ public class Venda {
 		System.out.println("\n");
 		Scanner input = new Scanner(System.in);
 		int opcao  = 1;
-		utilidade.Util.limpaTela();
 		while(opcao>0) {
-			System.out.println("#\n-------------Sistema de Bilheteria Digital #Modulo Vendas -----------");
-			System.out.println("# Escolha a opcao desejada://");
-			System.out.println("# 1|-> Visualizar lista de filmes//");
+			System.out.println("\n#-------------Sistema de Bilheteria Digital #Modulo Vendas -----------");
+			System.out.println("# Escolha a opcao desejada: ");
+			System.out.println("# 1|-> Visualizar lista de filmes");
 			System.out.println("# 2|-> Escolher Filme");
+			System.out.println("# 0|-> Voltar ao menu principal");
 			
 			opcao = input.nextInt();
 			
@@ -64,11 +65,9 @@ public class Venda {
 				
 				if(calculaTroco[i]>0) {
 					System.out.println(calculaTroco[i]+" notas/moedas de: "+listaCedulas.get(i).getDescricao());
-				}
-				
+				}	
 			}
 			return true;
-			
 		}
 		return false;
 	}
@@ -156,6 +155,7 @@ public class Venda {
 			System.out.println("Venda realizada com sucesso, obrigado e aproveite o filme.");	
 			caixa.fechaVenda(filme.getPreco(),filme,insumos.getImpressora());
 		}
+
 	}
 }
 

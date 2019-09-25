@@ -1,56 +1,48 @@
 package operacao;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
+import fluxocaixa.Caixa;
 import insumos.Cedulas;
 import insumos.Filmes;
+import insumos.GeraInsumos;
+import relatorio.Relatorios;
 
 public class Manutencao {
 
 	
-
-	public static float calcDinheiroTotal(ArrayList<Cedulas> listaCedulas,boolean lista_dinheiro) {
-		float resultado = 0;
-		for(int i = 0; i<listaCedulas.size();i++) {
-			resultado+=(listaCedulas.get(i).getQuantidade()*listaCedulas.get(i).getValor());
-		}
-		if(lista_dinheiro) {
-			System.out.println("\nDinheiro Total da maquina: "+resultado);
-		}
+public static void mod_Manutencao(GeraInsumos  insumos, Caixa caixa, String senha) {
 		
-		return resultado;
-	}
-	
-	public static void adicionaFilme(String nome, int duracao, int lugares, int preco,ArrayList<Filmes> listaFilmes ) {
-		Filmes novo = new Filmes(nome, duracao, lugares, preco);
-		listaFilmes.add(novo);		
-	}
-	
-	public static void adicionaLugares(int nomeFilme,ArrayList<Filmes> listaFilmes, int qtd) {
-		listaFilmes.get(nomeFilme).addLugares(qtd);
-	}
-	
-	public static void subtraiFilme(String nome,ArrayList<Filmes> listaFilmes ) {
-		for(int i = 0; i<listaFilmes.size();i++) {
-			if(listaFilmes.get(i).getNome()==nome) {
-				listaFilmes.remove(i);
+	if(senha.equalsIgnoreCase("admin")) {
+		System.out.println("\n");
+		Scanner input = new Scanner(System.in);
+		int opcao  = 1;
+		while(opcao>0) {
+			System.out.println("\n#-------------Sistema de Bilheteria Digital #Modulo Manutencao -----------");
+			System.out.println("# Escolha a opcao desejada:");
+			System.out.println("# 1|-> Adicionar Produtos");
+			System.out.println("# 2|-> Relatorios");
+			System.out.println("# 0|-> Voltar ao menu principal");
+			
+			opcao = input.nextInt();
+			
+			switch(opcao) {
+			  case 1:
+				  Adiciona.mod_AdicionaProd(insumos);
+			    break;
+			  case 2:
+				 Relatorios.mod_Relatorios(insumos);
+			    break;
+			  case 0:
+				  break;
+			  default:
+			    // code block
 			}
 		}
-	}	
-	
-	public static void adicionaDinheiro(float valor, ArrayList<Cedulas> listaCedulas, int qtd) {
-		for(int i = 0; i<listaCedulas.size();i++) {
-			if(listaCedulas.get(i).getValor()==qtd) {
-				listaCedulas.get(i).addQuantidade(qtd);
-			}
-		}
+	}else {
+		System.out.println("### Senha invalida ### ");
 	}
+}
 	
-	public static void subtraiDinheiro(float valor, ArrayList<Cedulas> listaCedulas, int qtd) {
-		for(int i = 0; i<listaCedulas.size();i++) {
-			if(listaCedulas.get(i).getValor()==qtd) {
-				listaCedulas.get(i).subQuantidade(qtd);
-			}
-		}
-	}
 }

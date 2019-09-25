@@ -50,7 +50,7 @@ public void subLugares(int qtd) {
 
 public static void exibeFilmes(ArrayList<Filmes> listaFilmes) {
 	for(int i = 0; i<listaFilmes.size();i++) {
-		System.out.println("Filme na sala "+i+": "+listaFilmes.get(i).getNome()+ " com "+ listaFilmes.get(i).lugares +" disponiveis, valor:"+ listaFilmes.get(i).getPreco());
+		System.out.println("Filme na sala "+i+"|-> "+listaFilmes.get(i).getNome()+ " com "+ listaFilmes.get(i).lugares +" lugares disponiveis, valor:"+ listaFilmes.get(i).getPreco());
 	}
 	}
 }
