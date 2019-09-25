@@ -52,7 +52,7 @@ public class Venda {
 		if(valorFilme > dinheiroRecebido) {
 			System.out.println("Dinheiro Insuficiente para o filme escolhido");
 			return false;
-		}else if ((dinheiroRecebido - valorFilme) >Manutencao.calcDinheiroTotal(listaCedulas,false)) {
+		}else if ((dinheiroRecebido - valorFilme) >Relatorios.calcDinheiroTotal(listaCedulas,false)) {
 			System.out.println("Dinheiro Na maquina Insuficiente para gerar troco");
 			return false;
 		}
