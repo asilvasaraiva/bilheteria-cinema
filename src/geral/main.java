@@ -22,7 +22,7 @@ public class main {
 		
 		insumos.geraListaFilmes(4);
 		insumos.geraImpressora(30);
-		ArrayList<Cedulas> cedulas = insumos.geraListaCedulas(9);
+		insumos.geraListaCedulas(9);
 		
 		/*
 		Venda teste = new Venda();

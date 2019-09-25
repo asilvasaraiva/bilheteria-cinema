@@ -1,5 +1,7 @@
 package fluxocaixa;
 
+import insumos.Filmes;
+import insumos.Impressora;
 
 public class Caixa {
 private int numVendas = 0;
@@ -20,9 +22,12 @@ public void setValorTotal(float valorTotal) {
 }
 
 
-public void fechaVenda(float preco) {
+public void fechaVenda(float preco, Filmes filmeEscolhido, Impressora impressora) {
 	this.numVendas++;
 	valorTotal+=preco;
+	filmeEscolhido.subLugares(1);
+	impressora.subQtd();
+	
 	
 }
 	

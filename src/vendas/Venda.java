@@ -33,7 +33,7 @@ public class Venda {
 				  Filmes.exibeFilmes(insumos.getListaFilmes());
 			    break;
 			  case 2:
-				  System.out.println("#Qual o numero Filme: ");
+				  System.out.println("#Informe qual o numero da sala: ");
 				  opcao = input.nextInt();
 				  vendeFilme(insumos, opcao, caixa);
 			    break;
@@ -51,7 +51,7 @@ public class Venda {
 		if(valorFilme > dinheiroRecebido) {
 			System.out.println("Dinheiro Insuficiente para o filme escolhido");
 			return false;
-		}else if ((dinheiroRecebido - valorFilme) >Manutencao.calcDinheiroTotal(listaCedulas)) {
+		}else if ((dinheiroRecebido - valorFilme) >Manutencao.calcDinheiroTotal(listaCedulas,false)) {
 			System.out.println("Dinheiro Na maquina Insuficiente para gerar troco");
 			return false;
 		}
@@ -61,7 +61,11 @@ public class Venda {
 			System.out.println("Troco disponibilizado em: ");
 			for(int i = 0; i<5;i++) {
 				listaCedulas.get(i).subQuantidade(calculaTroco[i]);//subtrai os valores do troco da base
-				System.out.println(calculaTroco[i]+"notas/moedas de: "+listaCedulas.get(i).getDescricao());
+				
+				if(calculaTroco[i]>0) {
+					System.out.println(calculaTroco[i]+" notas/moedas de: "+listaCedulas.get(i).getDescricao());
+				}
+				
 			}
 			return true;
 			
@@ -150,7 +154,7 @@ public class Venda {
 				System.out.println("Dinheiro Insuficiente para reservar o filme");
 			}else if(Venda.geraTroco(filme.getPreco(),dinheiro,insumos.getListaCedulas())) {	
 			System.out.println("Venda realizada com sucesso, obrigado e aproveite o filme.");	
-			caixa.fechaVenda(filme.getPreco());
+			caixa.fechaVenda(filme.getPreco(),filme,insumos.getImpressora());
 		}
 	}
 }

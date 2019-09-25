@@ -9,12 +9,15 @@ public class Manutencao {
 
 	
 
-	public static float calcDinheiroTotal(ArrayList<Cedulas> listaCedulas) {
+	public static float calcDinheiroTotal(ArrayList<Cedulas> listaCedulas,boolean lista_dinheiro) {
 		float resultado = 0;
 		for(int i = 0; i<listaCedulas.size();i++) {
 			resultado+=(listaCedulas.get(i).getQuantidade()*listaCedulas.get(i).getValor());
 		}
-		System.out.println("\nDinheiro Total da maquina: "+resultado);
+		if(lista_dinheiro) {
+			System.out.println("\nDinheiro Total da maquina: "+resultado);
+		}
+		
 		return resultado;
 	}
 	
@@ -23,6 +26,9 @@ public class Manutencao {
 		listaFilmes.add(novo);		
 	}
 	
+	public static void adicionaLugares(int nomeFilme,ArrayList<Filmes> listaFilmes, int qtd) {
+		listaFilmes.get(nomeFilme).addLugares(qtd);
+	}
 	
 	public static void subtraiFilme(String nome,ArrayList<Filmes> listaFilmes ) {
 		for(int i = 0; i<listaFilmes.size();i++) {
