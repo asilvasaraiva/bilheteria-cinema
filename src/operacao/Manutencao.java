@@ -32,7 +32,7 @@ public static void mod_Manutencao(GeraInsumos  insumos, Caixa caixa, String senh
 				  Adiciona.mod_AdicionaProd(insumos);
 			    break;
 			  case 2:
-				 Relatorios.mod_Relatorios(insumos);
+				 Relatorios.mod_Relatorios(insumos,caixa);
 			    break;
 			  case 0:
 				  break;

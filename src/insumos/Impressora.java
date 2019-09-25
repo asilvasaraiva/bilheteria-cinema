@@ -26,4 +26,7 @@ public void subQtd() {
 	this.quantidade--;
 }
 
+public void addPapel(int qtd) {
+	this.quantidade+=qtd;
+}
 }

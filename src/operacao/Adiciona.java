@@ -7,6 +7,7 @@ import fluxocaixa.Caixa;
 import insumos.Cedulas;
 import insumos.Filmes;
 import insumos.GeraInsumos;
+import insumos.Impressora;
 
 public class Adiciona {
 
@@ -22,7 +23,7 @@ public class Adiciona {
 			System.out.println("# 1|-> Adicionar Novo Filme");
 			System.out.println("# 2|-> Adicionar Lugar para um filme");
 			System.out.println("# 3|-> Adicionar Papel a impressora");
-			System.out.println("# 4|-> Adicionar Dinheiro na maquina");
+			System.out.println("# 4|-> Adicionar Dinheiro");
 			System.out.println("# 0|-> voltar");
 			opcao = input.nextInt();
 			
@@ -37,6 +38,12 @@ public class Adiciona {
 				  opcao = input.nextInt(); 
 				  adicionaLugares(opcao,insumos.getListaFilmes());
 			    break;
+			  case 3:
+				  adicionaPapel(insumos.getImpressora());
+				  break;
+			  case 4:
+				  System.out.println("working on it...");
+				  break;
 			  case 0:
 				  break;
 			  default:
@@ -74,6 +81,16 @@ public class Adiciona {
 		System.out.println("#Lugares Adicionados com sucesso");
 	}
 	
+	public static void adicionaPapel(Impressora impressora){
+		Scanner input = new Scanner(System.in); 
+		
+		System.out.println("A impressora "+ impressora.getNome()+ " ainda possui "+ 
+		impressora.getQuantidade()+ " impressores restantes");
+		System.out.println("#Digite quantos lugares deseja adicionar: ");
+		int qtd= input.nextInt();
+		impressora.addPapel(qtd);
+		System.out.println("#Papel adicionado com sucesso ");
+	}
 	public static void subtraiFilme(String nome,ArrayList<Filmes> listaFilmes ) {
 		for(int i = 0; i<listaFilmes.size();i++) {
 			if(listaFilmes.get(i).getNome()==nome) {
