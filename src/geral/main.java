@@ -1,5 +1,6 @@
 package geral;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,7 +15,7 @@ import vendas.Venda;
 public class main {
 
 	public static void main(String[] args) {
-		//Conexao con = new Conexao();
+		Conexao con = new Conexao();
 		GeraInsumos  insumos = new GeraInsumos();
 		Caixa caixa = new Caixa();
 		Scanner input = new Scanner(System.in);
@@ -25,6 +26,12 @@ public class main {
 		insumos.geraImpressora(30);
 		insumos.geraListaCedulas(9);
 		
+		try {
+			con.adicionaFilme(insumos.getListaFilmes().get(1));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		/*
 		Venda teste = new Venda();
 		
