@@ -12,7 +12,7 @@ public class Relatorios {
 
 	
 	
-	public static void mod_Relatorios(GeraInsumos  insumos, Caixa caixa) {
+	public static void mod_Relatorios(GeraInsumos  insumos) {
 		
 		
 		System.out.println("\n");
@@ -29,7 +29,7 @@ public class Relatorios {
 			
 			switch(opcao) {
 			  case 1: 
-				  relatorioVendas(caixa);
+				  relatorioVendas(insumos.getCaixa());
 			    break;
 			  case 2:
 				  relatorioCedulas(insumos.getListaCedulas());

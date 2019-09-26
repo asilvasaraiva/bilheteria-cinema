@@ -3,10 +3,13 @@ package insumos;
 
 import java.util.ArrayList;
 
+import fluxocaixa.Caixa;
+
 public class GeraInsumos {
 private ArrayList<Filmes> listaFilmes = new ArrayList<Filmes>();
 private ArrayList<Cedulas> listaCedulas = new ArrayList<Cedulas>();
 private Impressora impressora;
+private Caixa caixa = new Caixa();
 
 public ArrayList<Filmes> geraListaFilmes(int qtd){
 		for(int i = 0; i<qtd;i++) {
@@ -58,6 +61,14 @@ public Impressora getImpressora() {
 
 public void setImpressora(Impressora impressora) {
 	this.impressora = impressora;
+}
+
+public Caixa getCaixa() {
+	return caixa;
+}
+
+public void setCaixa(Caixa caixa) {
+	this.caixa = caixa;
 }
 
 

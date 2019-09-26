@@ -10,7 +10,7 @@ import relatorio.Relatorios;
 public class Manutencao {
 
 	
-public static void mod_Manutencao(GeraInsumos  insumos, Caixa caixa, String senha,Conexao con) {
+public static void mod_Manutencao(GeraInsumos  insumos, String senha,Conexao con) {
 		
 	if(senha.equalsIgnoreCase("admin")) {
 		System.out.println("\n");
@@ -30,7 +30,7 @@ public static void mod_Manutencao(GeraInsumos  insumos, Caixa caixa, String senh
 				  Adiciona.mod_AdicionaProd(insumos,con);
 			    break;
 			  case 2:
-				 Relatorios.mod_Relatorios(insumos,caixa);
+				 Relatorios.mod_Relatorios(insumos);
 			    break;
 			  case 0:
 				  break;

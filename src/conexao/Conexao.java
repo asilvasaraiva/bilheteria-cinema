@@ -137,6 +137,18 @@ public class Conexao {
 	        }  
 	        return caixa;
 	    }
+	 
+	 public Impressora getImpressora() throws SQLException {
+		 	Impressora impressora = new Impressora();
+	        String sql = "SELECT * FROM db_impressora";
+	        ResultSet resul = executaBusca(sql);
+	        
+	        while(resul.next()){
+	        impressora.setQuantidade(resul.getInt("qtd_impressoes_impressora"));
+	        impressora.setNome(resul.getString("nome_impressora"));  
+	        }  
+	        return impressora;
+	    }
 	    
 	 public ArrayList<Cedulas> getListaCedulas() throws SQLException {
 		 	ArrayList<Cedulas> listaCedulas = new ArrayList<Cedulas>();

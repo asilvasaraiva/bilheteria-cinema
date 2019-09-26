@@ -4,6 +4,9 @@ public class Impressora {
 private String nome;
 private int quantidade;
 
+public Impressora() {
+	
+}
 public Impressora(String nome, int quantidade) {
 	super();
 	this.nome = nome;

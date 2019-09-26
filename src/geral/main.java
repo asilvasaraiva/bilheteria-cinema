@@ -20,18 +20,20 @@ public class main {
 		
 		
 		GeraInsumos  insumos = new GeraInsumos();
-		Caixa caixa = new Caixa();
+		
 		Scanner input = new Scanner(System.in);
 		int opcao = 1;
 		String senha = "";
 		
-		insumos.geraListaFilmes(4);
-		insumos.geraImpressora(30);
+		//insumos.geraListaFilmes(4);
+		//insumos.geraImpressora(30);
 		//insumos.geraListaCedulas(9);
 		
 		try {
 			insumos.setListaCedulas(con.getListaCedulas());
 			insumos.setListaFilmes(con.getListaFilmes());
+			insumos.setImpressora(con.getImpressora());
+			insumos.setCaixa(con.getCaixa());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,12 +51,12 @@ public class main {
 			switch(opcao) {
 			  case 1:
 			    // code block
-				  Venda.mod_Venda(insumos,caixa,con);
+				  Venda.mod_Venda(insumos,con);
 			    break;
 			  case 2:
 				  System.out.println("#Digite a senha: ");
 				  senha = input.next();
-				 Manutencao.mod_Manutencao(insumos,caixa,senha,con);
+				 Manutencao.mod_Manutencao(insumos,senha,con);
 			    break;
 			  case 0:
 				  break;
