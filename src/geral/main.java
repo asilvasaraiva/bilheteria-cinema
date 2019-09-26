@@ -16,19 +16,16 @@ public class main {
 
 	public static void main(String[] args) {
 		Conexao con = new Conexao();
-		
-		
-		
 		GeraInsumos  insumos = new GeraInsumos();
-		
 		Scanner input = new Scanner(System.in);
 		int opcao = 1;
 		String senha = "";
 		
-		//insumos.geraListaFilmes(4);
-		//insumos.geraImpressora(30);
-		//insumos.geraListaCedulas(9);
-		
+		/*Iniciando Manualmente os insumos
+		insumos.geraListaFilmes(4);
+		insumos.geraImpressora(30);
+		insumos.geraListaCedulas(9);
+		*/
 		try {
 			insumos.setListaCedulas(con.getListaCedulas());
 			insumos.setListaFilmes(con.getListaFilmes());
