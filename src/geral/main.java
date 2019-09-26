@@ -26,12 +26,7 @@ public class main {
 		insumos.geraImpressora(30);
 		insumos.geraListaCedulas(9);
 		
-		try {
-			con.adicionaFilme(insumos.getListaFilmes().get(1));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		/*
 		Venda teste = new Venda();
 		
@@ -60,7 +55,7 @@ public class main {
 			  case 2:
 				  System.out.println("#Digite a senha: ");
 				  senha = input.next();
-				 Manutencao.mod_Manutencao(insumos,caixa,senha);
+				 Manutencao.mod_Manutencao(insumos,caixa,senha,con);
 			    break;
 			  case 0:
 				  break;

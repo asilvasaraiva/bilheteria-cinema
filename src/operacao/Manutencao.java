@@ -2,6 +2,7 @@ package operacao;
 
 import java.util.Scanner;
 
+import conexao.Conexao;
 import fluxocaixa.Caixa;
 import insumos.GeraInsumos;
 import relatorio.Relatorios;
@@ -9,7 +10,7 @@ import relatorio.Relatorios;
 public class Manutencao {
 
 	
-public static void mod_Manutencao(GeraInsumos  insumos, Caixa caixa, String senha) {
+public static void mod_Manutencao(GeraInsumos  insumos, Caixa caixa, String senha,Conexao con) {
 		
 	if(senha.equalsIgnoreCase("admin")) {
 		System.out.println("\n");
@@ -26,7 +27,7 @@ public static void mod_Manutencao(GeraInsumos  insumos, Caixa caixa, String senh
 			
 			switch(opcao) {
 			  case 1:
-				  Adiciona.mod_AdicionaProd(insumos);
+				  Adiciona.mod_AdicionaProd(insumos,con);
 			    break;
 			  case 2:
 				 Relatorios.mod_Relatorios(insumos,caixa);

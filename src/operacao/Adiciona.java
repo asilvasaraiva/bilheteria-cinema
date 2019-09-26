@@ -1,8 +1,10 @@
 package operacao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import conexao.Conexao;
 import fluxocaixa.Caixa;
 import insumos.Cedulas;
 import insumos.Filmes;
@@ -11,7 +13,7 @@ import insumos.Impressora;
 
 public class Adiciona {
 
-	public static void mod_AdicionaProd(GeraInsumos  insumos) {
+	public static void mod_AdicionaProd(GeraInsumos  insumos, Conexao con) {
 		
 	
 		System.out.println("\n");
@@ -29,7 +31,7 @@ public class Adiciona {
 			
 			switch(opcao) {
 			  case 1:
-				  adicionaFilme(insumos.getListaFilmes());
+				  adicionaFilme(insumos.getListaFilmes(),con);
 			    break;
 			  case 2:
 				  System.out.println("Lista de Filmes e lugares disponíveis");
@@ -54,7 +56,7 @@ public class Adiciona {
 	
 	}
 	
-	public static void adicionaFilme(ArrayList<Filmes> listaFilmes ) {
+	public static void adicionaFilme(ArrayList<Filmes> listaFilmes,Conexao con ) {
 		String nome;
 		int duracao,lugares;
 		float preco;
@@ -69,8 +71,16 @@ public class Adiciona {
 		preco = input.nextFloat(); 
 		
 		Filmes novo = new Filmes(nome, duracao, lugares, preco);
-		listaFilmes.add(novo);	
-		System.out.println("##Filme "+novo.getNome()+ " cadastrado com sucesso##");
+		try {
+			listaFilmes.add(novo);	
+			con.adicionaFilme(novo);
+			System.out.println("##Filme "+novo.getNome()+ " cadastrado com sucesso##");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 	
 	public static void adicionaLugares(int nomeFilme,ArrayList<Filmes> listaFilmes) {
