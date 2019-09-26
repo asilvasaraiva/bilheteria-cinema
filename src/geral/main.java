@@ -16,6 +16,9 @@ public class main {
 
 	public static void main(String[] args) {
 		Conexao con = new Conexao();
+		
+		
+		
 		GeraInsumos  insumos = new GeraInsumos();
 		Caixa caixa = new Caixa();
 		Scanner input = new Scanner(System.in);
@@ -24,7 +27,14 @@ public class main {
 		
 		insumos.geraListaFilmes(4);
 		insumos.geraImpressora(30);
-		insumos.geraListaCedulas(9);
+		//insumos.geraListaCedulas(9);
+		
+		try {
+			insumos.setListaCedulas(con.getListaCedulas());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 		/*
@@ -50,7 +60,7 @@ public class main {
 			switch(opcao) {
 			  case 1:
 			    // code block
-				  Venda.mod_Venda(insumos,caixa);
+				  Venda.mod_Venda(insumos,caixa,con);
 			    break;
 			  case 2:
 				  System.out.println("#Digite a senha: ");

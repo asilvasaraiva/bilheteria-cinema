@@ -1,10 +1,10 @@
 package vendas;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
-
+import conexao.Conexao;
 import fluxocaixa.Caixa;
 import insumos.Cedulas;
 import insumos.Filmes;
@@ -15,7 +15,7 @@ import relatorio.Relatorios;
 public class Venda {
 
 	
-	public static void mod_Venda(GeraInsumos  insumos, Caixa caixa) {
+	public static void mod_Venda(GeraInsumos  insumos, Caixa caixa,Conexao con) {
 		
 		System.out.println("\n");
 		Scanner input = new Scanner(System.in);
@@ -36,7 +36,7 @@ public class Venda {
 			  case 2:
 				  System.out.println("#Informe qual o numero da sala: ");
 				  opcao = input.nextInt();
-				  vendeFilme(insumos, opcao, caixa);
+				  vendeFilme(insumos, opcao, caixa,con);
 			    break;
 			  case 0:
 				  break;
@@ -137,7 +137,7 @@ public class Venda {
 	
 	
 	
-	public static void vendeFilme(GeraInsumos  insumos, int filmeEscolhido, Caixa caixa) {
+	public static void vendeFilme(GeraInsumos  insumos, int filmeEscolhido, Caixa caixa,Conexao con) {
 		Filmes filme = insumos.getListaFilmes().get(filmeEscolhido);
 		
 		if(filme.getLugares()<=0) {
@@ -152,8 +152,16 @@ public class Venda {
 			if(filme.getPreco()> dinheiro) {
 				System.out.println("Dinheiro Insuficiente para reservar o filme");
 			}else if(Venda.geraTroco(filme.getPreco(),dinheiro,insumos.getListaCedulas())) {	
-			System.out.println("Venda realizada com sucesso, obrigado e aproveite o filme.");	
+			System.out.println("Venda realizada com sucesso, obrigado e aproveite o filme.");
+			
 			caixa.fechaVenda(filme.getPreco(),filme,insumos.getImpressora());
+			try {
+				con.updateCaixa(caixa);
+				con.updatePapelImpressora(insumos.getImpressora());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 	}

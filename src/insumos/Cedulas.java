@@ -5,6 +5,10 @@ private String descricao;
 private float valor;
 private int quantidade;
 
+
+public Cedulas() {	
+}
+
 public Cedulas(String descricao, float valor, int quantidade) {
 	super();
 	this.descricao = descricao;

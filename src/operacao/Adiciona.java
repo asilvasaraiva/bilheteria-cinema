@@ -44,7 +44,7 @@ public class Adiciona {
 				  adicionaPapel(insumos.getImpressora());
 				  break;
 			  case 4:
-				  adicionaDinheiro(insumos.getListaCedulas());
+				  adicionaDinheiro(insumos.getListaCedulas(),con);
 				  break;
 			  case 0:
 				  break;
@@ -73,11 +73,12 @@ public class Adiciona {
 		Filmes novo = new Filmes(nome, duracao, lugares, preco);
 		try {
 			listaFilmes.add(novo);	
-			con.adicionaFilme(novo);
+			con.insertFilme(novo);
 			System.out.println("##Filme "+novo.getNome()+ " cadastrado com sucesso##");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("##Filme "+novo.getNome()+ " não realizada, por favor tente novamente##");
 		}
 		
 		
@@ -110,7 +111,7 @@ public class Adiciona {
 		}
 	}	
 	
-	public static void adicionaDinheiro( ArrayList<Cedulas> listaCedulas) {
+	public static void adicionaDinheiro( ArrayList<Cedulas> listaCedulas,Conexao con) {
 		Scanner input = new Scanner(System.in);
 		
 		int qtd, index;
@@ -129,8 +130,18 @@ public class Adiciona {
 		qtd = input.nextInt();
 		
 		listaCedulas.get(index).addQuantidade(qtd);
+		Cedulas cedula = listaCedulas.get(index);
 		
-		System.out.println("##Adicao de moeda/cedula realizada com sucesso##");
+		try {
+			con.updateCedulas(cedula);
+			System.out.println("##Adicao de moeda/cedula realizada com sucesso##");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("##Adicao de moeda/cedula não realizada, por favor tente novamente##");
+		}
+		
+		
 	}
 	
 	public static void subtraiDinheiro(float valor, ArrayList<Cedulas> listaCedulas, int qtd) {
