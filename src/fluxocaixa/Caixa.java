@@ -26,6 +26,7 @@ public void fechaVenda(float preco, Filmes filmeEscolhido, Impressora impressora
 	this.numVendas++;
 	valorTotal+=preco;
 	filmeEscolhido.subLugares(1);
+	
 	impressora.subQtd();
 	
 	

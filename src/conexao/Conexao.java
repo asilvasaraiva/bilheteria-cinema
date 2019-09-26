@@ -107,10 +107,16 @@ public class Conexao {
 		String sql = "UPDATE db_impressora SET qtd_impressoes_impressora='"+impressora.getQuantidade()+
 					"' WHERE id_impressora = '1'";
        stmt.executeUpdate(sql);
-
        stmt.close();
-
    }
+	
+	public void updateLugaresFilme(Filmes filme) throws SQLException {
+		 java.sql.Statement stmt = con.createStatement();
+		String sql = "UPDATE db_filme SET lugar_filme='"+filme.getLugares()+
+					"' WHERE nome_filme = '"+filme.getNome()+"'";
+      stmt.executeUpdate(sql);
+      stmt.close();
+  }
 	public void updateCaixa(Caixa caixa) throws SQLException {
 		 java.sql.Statement stmt = con.createStatement();
 		String sql = "UPDATE db_caixa SET num_vendas_caixa='"+caixa.getNumVendas()+"',total_vendas_caixa='"+caixa.getValorTotal()+

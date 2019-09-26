@@ -36,7 +36,12 @@ public class Venda {
 			  case 2:
 				  System.out.println("#Informe qual o numero da sala: ");
 				  opcao = input.nextInt();
+				  if(opcao>insumos.getListaFilmes().size()) {
+					  System.out.println("Sala Escolhida não existe");
+					  break;
+				  }else {
 				  vendeFilme(insumos, opcao,con);
+				  }
 			    break;
 			  case 0:
 				  break;
@@ -47,7 +52,7 @@ public class Venda {
 	}
 	
 	
-	public static boolean geraTroco(float valorFilme, float dinheiroRecebido, ArrayList<Cedulas> listaCedulas) {
+	public static boolean geraTroco(float valorFilme, float dinheiroRecebido, ArrayList<Cedulas> listaCedulas,Conexao con) {
 		
 		if(valorFilme > dinheiroRecebido) {
 			System.out.println("Dinheiro Insuficiente para o filme escolhido");
@@ -65,6 +70,12 @@ public class Venda {
 				
 				if(calculaTroco[i]>0) {
 					System.out.println(calculaTroco[i]+" notas/moedas de: "+listaCedulas.get(i).getDescricao());
+					try {
+						con.updateCedulas(listaCedulas.get(i));
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}	
 			}
 			return true;
@@ -151,13 +162,15 @@ public class Venda {
 			dinheiro = input.nextFloat();
 			if(filme.getPreco()> dinheiro) {
 				System.out.println("Dinheiro Insuficiente para reservar o filme");
-			}else if(Venda.geraTroco(filme.getPreco(),dinheiro,insumos.getListaCedulas())) {	
-			System.out.println("Venda realizada com sucesso, obrigado e aproveite o filme.");
-			
-			insumos.getCaixa().fechaVenda(filme.getPreco(),filme,insumos.getImpressora());
+			}else if(Venda.geraTroco(filme.getPreco(),dinheiro,insumos.getListaCedulas(),con)) {	
+		
 			try {
+				insumos.getCaixa().fechaVenda(filme.getPreco(),filme,insumos.getImpressora());
 				con.updateCaixa(insumos.getCaixa());
 				con.updatePapelImpressora(insumos.getImpressora());
+				con.updateLugaresFilme(filme);
+				System.out.println("##Venda realizada com sucesso, obrigado e aproveite o filme.##");
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
