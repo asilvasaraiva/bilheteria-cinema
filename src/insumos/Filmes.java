@@ -8,6 +8,9 @@ private int duracao;
 private int lugares;
 private float preco;
 
+public Filmes() {
+	
+}
 
 public Filmes(String nome, int duracao, int lugares, float preco) {
 	super();

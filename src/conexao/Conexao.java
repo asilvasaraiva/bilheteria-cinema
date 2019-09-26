@@ -53,7 +53,7 @@ public class Conexao {
 		try {
 			java.sql.Statement stm = con.createStatement();
 			ResultSet rs = stm.executeQuery(sql);
-			con.close();	
+				
 			return rs;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -140,25 +140,34 @@ public class Conexao {
 	    
 	 public ArrayList<Cedulas> getListaCedulas() throws SQLException {
 		 	ArrayList<Cedulas> listaCedulas = new ArrayList<Cedulas>();
-		 	
 		 	String sql = "SELECT * FROM db_cedula";
 	        ResultSet resul = executaBusca(sql);
 	        
-	       
 	        while(resul.next()){
 	        Cedulas novaCedula = new Cedulas();
 	        novaCedula.setDescricao(resul.getString("descricao_cedula"));
 	        novaCedula.setValor(resul.getFloat("valor_cedula"));
 	        novaCedula.setQuantidade(resul.getInt("qtd_cedula"));
-	        
 	        listaCedulas.add(novaCedula);
-	        //System.out.println(novaCedula.getNumVendas());
-	        //System.out.println(caixa.getValorTotal());
 	        }
-	       return listaCedulas;
+	       return listaCedulas; 
+	    }
+	 
+	 public ArrayList<Filmes> getListaFilmes() throws SQLException {
+		 	ArrayList<Filmes> listaFilmes = new ArrayList<Filmes>();
+		 	String sql = "SELECT * FROM db_filme";
+	        ResultSet resul = executaBusca(sql);
 	        
+	        while(resul.next()){
+	        Filmes novoFilme = new Filmes();
+	        novoFilme.setNome(resul.getString("nome_filme"));
+	        novoFilme.setPreco(resul.getFloat("preco_filme"));
+	        novoFilme.setDuracao(resul.getInt("duracao_filme"));
+	        novoFilme.setLugares(resul.getInt("lugar_filme"));
+	        listaFilmes.add(novoFilme);
+	        }
 	        
-	        
+	       return listaFilmes; 
 	    }
 	
 	
