@@ -24,6 +24,7 @@ public class Relatorios {
 			System.out.println("# 1|-> Vendas contabilizadas");
 			System.out.println("# 2|-> Quantidade cedulas/moedas disponiveis");
 			System.out.println("# 3|-> Impressões restantes na impressora");
+			System.out.println("# 4|-> Visualizar dinheiro total da maquina");
 			System.out.println("# 0|-> voltar");
 			opcao = input.nextInt();
 			
@@ -35,7 +36,10 @@ public class Relatorios {
 				  relatorioCedulas(insumos.getListaCedulas());
 			    break;
 			  case 3:
-				  relatorioImpressoes(insumos.getImpressora());  
+				  relatorioImpressoes(insumos.getImpressora());
+			  case 4:
+				  calcDinheiroTotal(insumos.getListaCedulas(), true);
+				  break;
 			  case 0:
 				  break;
 			  default:
@@ -68,7 +72,7 @@ public class Relatorios {
 			resultado+=(listaCedulas.get(i).getQuantidade()*listaCedulas.get(i).getValor());
 		}
 		if(lista_dinheiro) {
-			System.out.println("\nDinheiro Total da maquina: "+resultado);
+			System.out.println("\nDinheiro Total da maquina: "+resultado+ " reais");
 		}
 		return resultado;
 	}

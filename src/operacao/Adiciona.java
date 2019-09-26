@@ -38,10 +38,10 @@ public class Adiciona {
 				  Filmes.exibeFilmes(insumos.getListaFilmes());
 				  System.out.println("Escolha o numero da sala para adicionar mais lugares");
 				  opcao = input.nextInt(); 
-				  adicionaLugares(opcao,insumos.getListaFilmes());
+				  adicionaLugares(opcao,insumos.getListaFilmes(),con);
 			    break;
 			  case 3:
-				  adicionaPapel(insumos.getImpressora());
+				  adicionaPapel(insumos.getImpressora(),con);
 				  break;
 			  case 4:
 				  adicionaDinheiro(insumos.getListaCedulas(),con);
@@ -84,24 +84,43 @@ public class Adiciona {
 		
 	}
 	
-	public static void adicionaLugares(int nomeFilme,ArrayList<Filmes> listaFilmes) {
+	public static void adicionaLugares(int nomeFilme,ArrayList<Filmes> listaFilmes,Conexao con) {
 		int qtd=0;
 		Scanner input = new Scanner(System.in);
 		System.out.println("#Digite quantos lugares deseja adicionar: ");
 		qtd= input.nextInt();
-		listaFilmes.get(nomeFilme).addLugares(qtd);
-		System.out.println("#Lugares Adicionados com sucesso");
+		
+		try {
+			listaFilmes.get(nomeFilme).addLugares(qtd);
+			con.updateLugaresFilme(listaFilmes.get(nomeFilme));
+			System.out.println("##Lugares Adicionados com sucesso##");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("##Erro ao adicionar Lugar, favor tentar novamente##");
+		}
+		
+		
 	}
 	
-	public static void adicionaPapel(Impressora impressora){
+	public static void adicionaPapel(Impressora impressora,Conexao con){
 		Scanner input = new Scanner(System.in); 
 		
 		System.out.println("A impressora "+ impressora.getNome()+ " ainda possui "+ 
 		impressora.getQuantidade()+ " impressores restantes");
-		System.out.println("#Digite quantos lugares deseja adicionar: ");
+		System.out.println("#Digite quantos bilhetes deseja adicionar: ");
 		int qtd= input.nextInt();
-		impressora.addPapel(qtd);
-		System.out.println("##Papel adicionado com sucesso##");
+		try {
+			impressora.addPapel(qtd);
+			con.updatePapelImpressora(impressora);
+			System.out.println("##Papel adicionado com sucesso##");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("##Papel não adicionado com sucesso, favor tente novamente##");
+		}
+		
+		
 	}
 	public static void subtraiFilme(String nome,ArrayList<Filmes> listaFilmes ) {
 		for(int i = 0; i<listaFilmes.size();i++) {
