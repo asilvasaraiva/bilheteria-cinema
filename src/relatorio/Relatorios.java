@@ -40,6 +40,7 @@ public class Relatorios {
 				  break;
 			  default:
 			    // code block
+				  System.out.println("Valor informado inválido, por favor escolha um dos valores disponíveis\n");
 			}
 		}
 	

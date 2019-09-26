@@ -1,11 +1,8 @@
 package operacao;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import fluxocaixa.Caixa;
-import insumos.Cedulas;
-import insumos.Filmes;
 import insumos.GeraInsumos;
 import relatorio.Relatorios;
 
@@ -38,6 +35,7 @@ public static void mod_Manutencao(GeraInsumos  insumos, Caixa caixa, String senh
 				  break;
 			  default:
 			    // code block
+				  System.out.println("Valor informado inválido, por favor escolha um dos valores disponíveis\n");
 			}
 		}
 	}else {

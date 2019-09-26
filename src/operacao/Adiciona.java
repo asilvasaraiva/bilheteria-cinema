@@ -42,12 +42,13 @@ public class Adiciona {
 				  adicionaPapel(insumos.getImpressora());
 				  break;
 			  case 4:
-				  System.out.println("working on it...");
+				  adicionaDinheiro(insumos.getListaCedulas());
 				  break;
 			  case 0:
 				  break;
 			  default:
 			    // code block
+				  System.out.println("Valor informado inválido, por favor escolha um dos valores disponíveis\n");
 			}
 		}
 	
@@ -69,7 +70,7 @@ public class Adiciona {
 		
 		Filmes novo = new Filmes(nome, duracao, lugares, preco);
 		listaFilmes.add(novo);	
-		System.out.println("Filme "+novo.getNome()+ " cadastrado com sucesso");
+		System.out.println("##Filme "+novo.getNome()+ " cadastrado com sucesso##");
 	}
 	
 	public static void adicionaLugares(int nomeFilme,ArrayList<Filmes> listaFilmes) {
@@ -89,7 +90,7 @@ public class Adiciona {
 		System.out.println("#Digite quantos lugares deseja adicionar: ");
 		int qtd= input.nextInt();
 		impressora.addPapel(qtd);
-		System.out.println("#Papel adicionado com sucesso ");
+		System.out.println("##Papel adicionado com sucesso##");
 	}
 	public static void subtraiFilme(String nome,ArrayList<Filmes> listaFilmes ) {
 		for(int i = 0; i<listaFilmes.size();i++) {
@@ -99,12 +100,27 @@ public class Adiciona {
 		}
 	}	
 	
-	public static void adicionaDinheiro(float valor, ArrayList<Cedulas> listaCedulas, int qtd) {
+	public static void adicionaDinheiro( ArrayList<Cedulas> listaCedulas) {
+		Scanner input = new Scanner(System.in);
+		
+		int qtd, index;
+		System.out.println("Selecione uma das bandeijas abaixo para repor as quantidades");
+		
+		//Exibir lista de "Dinheiro" e suas quantidades:
 		for(int i = 0; i<listaCedulas.size();i++) {
-			if(listaCedulas.get(i).getValor()==qtd) {
-				listaCedulas.get(i).addQuantidade(qtd);
-			}
+			
+		System.out.println("Bandeija "+i+"|-> Cedula/moeda de "+listaCedulas.get(i).getDescricao()+
+				" possui "+listaCedulas.get(i).getQuantidade()+" unidades");	
 		}
+		
+		System.out.println("Digite o numero da bandeija a inserir: ");
+		index = input.nextInt();
+		System.out.println("Digite a quantidade de moeda/cedula a ser inserida: ");
+		qtd = input.nextInt();
+		
+		listaCedulas.get(index).addQuantidade(qtd);
+		
+		System.out.println("##Adicao de moeda/cedula realizada com sucesso##");
 	}
 	
 	public static void subtraiDinheiro(float valor, ArrayList<Cedulas> listaCedulas, int qtd) {
