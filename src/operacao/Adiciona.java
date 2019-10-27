@@ -93,7 +93,6 @@ public class Adiciona {
 		try {
 			listaFilmes.get(nomeFilme).addLugares(qtd);
 			con.updateLugaresFilme(listaFilmes.get(nomeFilme));
-			System.out.println("##Lugares Adicionados com sucesso##");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

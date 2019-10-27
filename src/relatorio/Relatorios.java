@@ -66,7 +66,7 @@ public class Relatorios {
 		System.out.println("Numero de impressões restantes: "+ impressora.getQuantidade());	
 	}
 	
-	public static float calcDinheiroTotal(ArrayList<Cedulas> listaCedulas,boolean lista_dinheiro) {
+	public static float calcDinheiroTotal(ArrayList<Cedulas> listaCedulas, boolean lista_dinheiro) {
 		float resultado = 0;
 		for(int i = 0; i<listaCedulas.size();i++) {
 			resultado+=(listaCedulas.get(i).getQuantidade()*listaCedulas.get(i).getValor());

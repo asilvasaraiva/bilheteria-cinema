@@ -34,10 +34,11 @@ public class Venda {
 				  Filmes.exibeFilmes(insumos.getListaFilmes());
 			    break;
 			  case 2:
-				  System.out.println("#Informe qual o numero da sala: ");
+				  Filmes.exibeFilmes(insumos.getListaFilmes());
+				  System.out.println("\n#Informe qual o numero da sala: ");
 				  opcao = input.nextInt();
 				  if(opcao>insumos.getListaFilmes().size()) {
-					  System.out.println("Sala Escolhida não existe");
+					  System.out.println("###Sala Escolhida não existe###");
 					  break;
 				  }else {
 				  vendeFilme(insumos, opcao,con);
@@ -112,7 +113,7 @@ public class Venda {
 		//e o resto adiciona a qantidade do proximo valor que é menor.
 		if((valorReal5 - listaCedulas.get(0).getQuantidade())>0) {
 			resultado = valorReal5 - listaCedulas.get(0).getQuantidade();//pega quanto sobra
-			valorReal2 += resultado* 2; // multiplica por 4 pois 1 cedula de 5
+			valorReal2 += resultado*2; // multiplica por 2 pois 1 cedula de 5
 			valorReal1 +=resultado;
 			cedulas[0] = listaCedulas.get(0).getQuantidade();// valor total que tinha 
 			cedulas[1] = valorReal2; //prox valor (2reai no caso) tem seu numero aumentado pela quantidade total pra formar 5 (2x2) + 1 de um real
@@ -148,13 +149,15 @@ public class Venda {
 	
 	
 	
-	public static void vendeFilme(GeraInsumos  insumos, int filmeEscolhido,Conexao con) {
+	public static boolean vendeFilme(GeraInsumos  insumos, int filmeEscolhido,Conexao con) {
 		Filmes filme = insumos.getListaFilmes().get(filmeEscolhido);
-		
+		System.out.println(filme.getNome());
 		if(filme.getLugares()<=0) {
 			System.out.println("Numero de lugares esgotados para esse filme, por favor escolha outro");
+			return false;
 		}else if(insumos.getImpressora().getQuantidade()<1) {		 
 			System.out.println("Papel Insuficiente na impressora para imprimir o ticket");
+			return false;
 		}else{
 			Scanner input = new Scanner(System.in);
 			float dinheiro;
@@ -162,6 +165,7 @@ public class Venda {
 			dinheiro = input.nextFloat();
 			if(filme.getPreco()> dinheiro) {
 				System.out.println("Dinheiro Insuficiente para reservar o filme");
+				
 			}else if(Venda.geraTroco(filme.getPreco(),dinheiro,insumos.getListaCedulas(),con)) {	
 		
 			try {
@@ -169,15 +173,18 @@ public class Venda {
 				con.updateCaixa(insumos.getCaixa());
 				con.updatePapelImpressora(insumos.getImpressora());
 				con.updateLugaresFilme(filme);
-				System.out.println("##Venda realizada com sucesso, obrigado e aproveite o filme.##");
+				System.out.println("##Venda realizada com sucesso, obrigado e aproveite o filme.##\n");
+				return true;
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				
 			}
 		}
 
 	}
+		return false;
 }
 
 }

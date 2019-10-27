@@ -44,17 +44,28 @@ public void setPreco(float preco) {
 	this.preco = preco;
 }
 
-public void addLugares(int qtd) {
-	this.lugares+=qtd;
+public int addLugares(int qtd) {
+	if (this.lugares+qtd<100) {
+		this.lugares+=qtd;	
+		System.out.println("##Lugares Adicionados com sucesso##");
+	}else {
+		System.out.println("Numero de lugares ultrapassou o maximo de 100 lugares");
+	}
+	return this.lugares;
+
 }
 public void subLugares(int qtd) {
 	this.lugares-=qtd;
 }
 
-public static void exibeFilmes(ArrayList<Filmes> listaFilmes) {
+public static boolean exibeFilmes(ArrayList<Filmes> listaFilmes) {
+	if(listaFilmes==null) {
+		return false;
+	}
 	for(int i = 0; i<listaFilmes.size();i++) {
 		System.out.println("Filme na sala "+i+"|-> "+listaFilmes.get(i).getNome()+ " com "+ listaFilmes.get(i).lugares +" lugares disponiveis, valor:"+ listaFilmes.get(i).getPreco());
 	}
+	return true;
 	}
 }
 
